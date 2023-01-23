@@ -25,13 +25,16 @@ async def on_message(message):
   if message.author == client.user:
     return 
 
-'''
-  if message.content == prefix+'help':
-    await message.channel.send('Hi! I am A1Bot, this year\'s robot for Free of            Charge#14523! These are a list of commands I can use: ')
+
+  '''if message.content == prefix+'help':
+    await message.channel.send('Hi! I am A1Bot, this year\'s robot for Free of            Charge#14523! These are a list of commands I can use: ')'''
 
   if message.content == 'onh':
     await message.add_reaction('\U0001F451')
-'''
+
+@client.command
+async def help(ctx):
+  await ctx.send('Hi! I am A1Bot, this year\'s robot for Free of Charge#14523! These are a list of commands I can use: ')
 
 #keep_alive()
 client.run(token)
