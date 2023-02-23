@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from discord.utils import find
 from keep_alive import keep_alive
+import re
 
 token = os.environ['TOKEN']
 
@@ -12,6 +13,9 @@ intents.message_content = True
 intents.typing = False
 intents.presences = False
 intents.reactions = True
+
+onh_re = r"(?i)( |^)onh( |$)"
+jasper_re = r"(?i)( |^)jasper( |$)"
 
 #client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix='$', activity = discord.Game(name="$help"), intents=intents)
@@ -25,7 +29,7 @@ async def on_ready():
 async def on_message(message): 
   if message.author == client.user:
     return 
-  if message.content.lower().startswith('onh'):
+  if re.search(onh_re, message.content):
     await message.add_reaction('\U0001F451')
   #announcements id & Hemanth967#8456 id
   if message.channel.id == 995913953542668328 and message.author.id == 526054276355850266:
@@ -33,7 +37,7 @@ async def on_message(message):
     await message.add_reaction('\U0001F1F3')
     await message.add_reaction('\U0001F1ED')
     await message.add_reaction('\U0001F451')
-  if message.content.lower().startswith('jasper'):
+  if re.search(jasper_re, message.content):
     await message.add_reaction('\U0001F40D')
   # process commands
   await client.process_commands(message)
